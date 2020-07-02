@@ -34,8 +34,7 @@ public class Subreddit {
     private User user;
 
     @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "postId", referencedColumnName = "postId")
-    private Set<Post> posts;
+    private List<Post> posts;
 
     private Instant createdDate;
 
