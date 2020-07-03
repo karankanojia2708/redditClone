@@ -4,11 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.NaturalId;
+import org.springframework.context.annotation.Primary;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
@@ -26,6 +25,7 @@ public class User {
     private Long userId;
 
     @NotBlank(message = "Username required")
+    @Column(unique = true, length = 100)
     private String username;
 
     @NotBlank(message = "Password required")
@@ -33,9 +33,10 @@ public class User {
 
     @Email
     @NotEmpty(message = "Email required")
+    @Column(unique = true, length = 100)
     private String email;
 
-    private Instant cratedDate;
+    private Instant createdDate;
     private boolean enable;
 
 }
